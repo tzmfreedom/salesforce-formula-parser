@@ -1,12 +1,12 @@
 {
-  "name": "formula-parser",
+  "name": "salesforce-formula-parser",
   "version": "1.0.0",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "tzmfreedom",
   "license": "MIT",
   "dependencies": {
     "antlr4": "^4.7.1"
