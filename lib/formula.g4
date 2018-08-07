@@ -9,6 +9,9 @@ expression
     :   literal
     |   functionCall
     |   fieldReference
+    |   expression '&' expression
+    |   expression op=('*'|'/'|'%') expression
+    |   expression op=('+'|'-') expression
     ;
 
 functionCall
@@ -27,6 +30,7 @@ literal
     :   StringLiteral
     |   IntegerLiteral
     |   BooleanLiteral
+    |   NullLiteral
     ;
 
 StringLiteral
@@ -66,6 +70,10 @@ NonZeroDigit
 BooleanLiteral
     :   T R U E
     |   F A L S E
+    ;
+
+NullLiteral
+    :   N U L L
     ;
 
 Identifier
