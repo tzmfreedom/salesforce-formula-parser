@@ -1,0 +1,116 @@
+grammar formula;
+
+// starting point for parsing a apexcode file
+compilationUnit
+    :   expression
+    ;
+
+expression
+    :   literal
+    |   functionCall
+    |   fieldReference
+    ;
+
+functionCall
+    :   Identifier '(' arguments? ')'
+    ;
+
+fieldReference
+    :   Identifier ('.' Identifier)*
+    ;
+
+arguments
+    :   expression (',' expression)*
+    ;
+
+literal
+    :   StringLiteral
+    |   IntegerLiteral
+    |   BooleanLiteral
+    ;
+
+StringLiteral
+    :   QUOTE StringCharacters? QUOTE
+    ;
+
+fragment
+StringCharacters
+    :   StringCharacter+
+    ;
+
+fragment
+StringCharacter
+    :   ~["\\]
+    ;
+
+IntegerLiteral
+    :   Digits
+    ;
+
+fragment
+Digits
+    :   Digit+
+    ;
+
+fragment
+Digit
+    :   '0'
+    |   NonZeroDigit
+    ;
+
+fragment
+NonZeroDigit
+    :   [1-9]
+    ;
+
+BooleanLiteral
+    :   T R U E
+    |   F A L S E
+    ;
+
+Identifier
+    :   Letter LetterOrDigit*
+    ;
+
+fragment
+Letter
+    :   [a-zA-Z$_] // these are the "java letters" below 0xFF
+    ;
+
+fragment
+LetterOrDigit
+    :   [a-zA-Z0-9$_] // these are the "java letters or digits" below 0xFF
+    ;
+
+WS  :  [ \t\r\n\u000C]+ -> skip
+    ;
+
+QUOTE : '"' -> skip;
+
+fragment A : [aA];
+fragment B : [bB];
+fragment C : [cC];
+fragment D : [dD];
+fragment E : [eE];
+fragment F : [fF];
+fragment G : [gG];
+fragment H : [hH];
+fragment I : [iI];
+fragment J : [jJ];
+fragment K : [kK];
+fragment L : [lL];
+fragment M : [mM];
+fragment N : [nN];
+fragment O : [oO];
+fragment P : [pP];
+fragment Q : [qQ];
+fragment R : [rR];
+fragment S : [sS];
+fragment T : [tT];
+fragment U : [uU];
+fragment V : [vV];
+fragment W : [wW];
+fragment X : [xX];
+fragment Y : [yY];
+fragment Z : [zZ];
+fragment SPACE : ' ';

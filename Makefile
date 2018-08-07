@@ -1,0 +1,7 @@
+.PHONY: run
+run:
+	node ./lib/index.js
+
+.PHONY: build
+build:
+	java -jar /usr/local/bin/antlr4 -Dlanguage=JavaScript -visitor lib/formula.g4
