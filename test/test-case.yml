@@ -27,6 +27,45 @@
       right:
         type: integer
         value: 3
+- name: double
+  input: '1.0'
+  expected:
+    type: double
+    value: 1.0
+- name: boolean
+  input: 'false'
+  expected:
+    type: boolean
+    value: false
+- name: string
+  input: '"hoge"'
+  expected:
+    type: string
+    value: hoge
+- name: identifier
+  input: hoge__c
+  expected:
+    type: reference
+    path:
+      - hoge__c
+- name: identifier.identifier
+  input: user.hoge__c
+  expected:
+    type: reference
+    path:
+      - user
+      - hoge__c
+- name: concat string
+  input: '"hoge" & "fuga"'
+  expected:
+    type: operator
+    operator: '&'
+    left:
+      type: string
+      value: hoge
+    right:
+      type: string
+      value: fuga
 - name: '() operator'
   input: '(1 + 2) * 3'
   expected:
