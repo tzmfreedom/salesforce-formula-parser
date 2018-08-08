@@ -1,0 +1,46 @@
+- name: 'function'
+  input: 'IF(TRUE, "foo", "bar")'
+  expected:
+    type: function
+    name: IF
+    arguments:
+     - type: boolean
+       value: true
+     - type: string
+       value: foo
+     - type: string
+       value: bar
+- name: '+ * operator'
+  input: '1 + 2 * 3'
+  expected:
+    type: operator
+    operator: +
+    left:
+      type: integer
+      value: 1
+    right:
+      type: operator
+      operator: '*'
+      left:
+        type: integer
+        value: 2
+      right:
+        type: integer
+        value: 3
+- name: '() operator'
+  input: '(1 + 2) * 3'
+  expected:
+    type: operator
+    operator: '*'
+    left:
+      type: operator
+      operator: +
+      left:
+        type: integer
+        value: 1
+      right:
+        type: integer
+        value: 2
+    right:
+      type: integer
+      value: 3

@@ -1,6 +1,6 @@
-.PHONY: run
-run:
-	node ./lib/index.js
+.PHONY: test
+test:
+	npx mocha --require intelli-espower-loader
 
 .PHONY: build
 build:
