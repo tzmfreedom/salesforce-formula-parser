@@ -6,20 +6,19 @@ compilationUnit
     ;
 
 expression
+    :   primary                            # primaryExpression
+    |   Identifier '(' arguments? ')'      # functionCall
+    |   Identifier ('.' Identifier)*       # fieldReference
+    |   expression op=('&'|'^') expression # binaryExpression
+    |   expression op=('*'|'/') expression # binaryExpression
+    |   expression op=('+'|'-') expression # binaryExpression
+    |   expression op=('<'|'>'|'<='|'>='|'='|'=='|'!='|'<>') expression # binaryExpression
+    |   expression op=('&&'|'||') expression # binaryExpression
+    ;
+
+primary
     :   literal
-    |   functionCall
-    |   fieldReference
-    |   expression '&' expression
-    |   expression op=('*'|'/'|'%') expression
-    |   expression op=('+'|'-') expression
-    ;
-
-functionCall
-    :   Identifier '(' arguments? ')'
-    ;
-
-fieldReference
-    :   Identifier ('.' Identifier)*
+    |   '(' expression ')'
     ;
 
 arguments
@@ -29,6 +28,7 @@ arguments
 literal
     :   StringLiteral
     |   IntegerLiteral
+    |   FloatingPointLiteral
     |   BooleanLiteral
     |   NullLiteral
     ;
@@ -65,6 +65,10 @@ Digit
 fragment
 NonZeroDigit
     :   [1-9]
+    ;
+
+FloatingPointLiteral
+    :   Digits '.' Digits?
     ;
 
 BooleanLiteral
