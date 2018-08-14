@@ -10,6 +10,12 @@
        value: foo
      - type: string
        value: bar
+- name: 'no operator function'
+  input: 'NOW()'
+  expected:
+    type: function
+    name: NOW
+    arguments: []
 - name: '+ * operator'
   input: '1 + 2 * 3'
   expected:
